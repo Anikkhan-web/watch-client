@@ -37,7 +37,7 @@ const ReviewSite = () =>
                         <input {...register("name", { required: true, maxLength: 20 })} placeholder="Name" />
                         <textarea {...register("description")} placeholder="Description" />
 
-                        <input className='mb' type="number" {...register("price", { min: 1, max: 5 })} placeholder="give rating 1 to 5git " />
+                        <input className='mb' type="number" {...register("price", { min: 1, max: 5 })} placeholder="give rating 1 to 5 digit " />
 
                         <input type="submit" />
                     </form>
