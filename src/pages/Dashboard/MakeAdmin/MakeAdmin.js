@@ -15,7 +15,7 @@ const MakeAdmin = () =>
     const handleAdminSubmit = e =>
     {
         const user = { email }
-        fetch('https://thawing-basin-76663.herokuapp.com/admin', {
+        fetch('https://thawing-basin-76663.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -30,7 +30,7 @@ const MakeAdmin = () =>
 
                     alert('Admin Added');
                     window.location.reload()
-
+                    handleOnBlur('')
 
 
                 }
