@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useForm } from "react-hook-form";
+
 import useAuth from '../../../hooks/useAuth';
 const MakeAdmin = () =>
 {
     const { admin } = useAuth();
+    const [email, setEmail] = useState('');
 
-    const { register, handleSubmit, reset } = useForm();
-    const onSubmit = data =>
+    const handleOnBlur = e =>
     {
-        const user = { data }
-        fetch('https://thawing-basin-76663.herokuapp.com/users/admin', {
+        setEmail(e.target.value);
+    }
+
+    const handleAdminSubmit = e =>
+    {
+        const user = { email }
+        fetch('http://localhost:5000/users/admin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -22,27 +27,37 @@ const MakeAdmin = () =>
             {
                 if (data.modifiedCount)
                 {
-                    console.log(data);
-                    reset()
+
+                    alert('Admin Added');
+                    window.location.reload()
 
 
 
                 }
             })
-    };
+
+
+        e.preventDefault();
+
+    }
     return (
 
         <div class="d-flex mb-5">
             <div class="col-md-9">
                 <h2>make admin</h2>
                 <div>
-                    <form onSubmit={handleSubmit(onSubmit)}>
 
-                        <input type="email" {...register("email", { required: true })} />
+                    <form onSubmit={handleAdminSubmit}>
 
-                        <input type="submit" />
+                        <input
+
+                            type="email"
+
+                            onBlur={handleOnBlur}
+                        />
+                        <button type="submit" variant="contained">Make Admin</button>
+
                     </form>
-
                 </div>
 
             </div>
@@ -75,5 +90,9 @@ const MakeAdmin = () =>
 };
 
 export default MakeAdmin;
+
+
+
+
 
 
